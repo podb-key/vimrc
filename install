@@ -5,7 +5,30 @@ GIT_ROOT=`pwd -P`
 popd > /dev/null
 
 if [ -e "$GIT_ROOT/.vimrc" ]; then
+   rm -f $HOME/.vimrc
    ln -s $GIT_ROOT/.vimrc $HOME/.vimrc
 else
    echo "$GIT_ROOT/.vimrc does not exist. Bailing out!"
+fi
+
+VIM_ROOT=$GIT_ROOT/..
+
+if [ ! -e $VIM_ROOT/autoload ]; then
+   mkdir $VIM_ROOT/autoload 
+fi
+
+if [ ! -e $VIM_ROOT/autoload ]; then
+   mkdir $VIM_ROOT/bundle
+fi
+
+if [ -e $VIM_ROOT/autoload/pathogen.vim ]; then
+   rm -f "$VIM_ROOT/autoload/pathogen.vim"
+fi
+
+curl -LSso "$VIM_ROOT/autoload/pathogen.vim" "https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim"
+
+if [ ! -e $VIM_ROOT/bundle/nerdtree ]; then
+   pushd $VIM_ROOT/bundle
+   git clone https://github.com/scrooloose/nerdtree.git
+   popd
 fi
