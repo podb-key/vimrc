@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [ -e "./.vimrc" ]; then
+   ln -s ./.vimrc $HOME/.vimrc
+else
+   echo "Please execute this script inside the vimrc git repository"
+fi
