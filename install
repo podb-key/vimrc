@@ -1,7 +1,11 @@
 #!/bin/bash
 
-if [ -e "./.vimrc" ]; then
-   ln -s ./.vimrc $HOME/.vimrc
+pushd `dirname ${BASH_SOURCE[0]}` > /dev/null
+GIT_ROOT=`pwd -P`
+popd > /dev/null
+
+if [ -e "$GIT_ROOT/.vimrc" ]; then
+   ln -s $GIT_ROOT/.vimrc $HOME/.vimrc
 else
-   echo "Please execute this script inside the vimrc git repository"
+   echo "$GIT_ROOT/.vimrc does not exist. Bailing out!"
 fi
