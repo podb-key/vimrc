@@ -28,7 +28,15 @@ fi
 curl -LSso "$VIM_ROOT/autoload/pathogen.vim" "https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim"
 
 if [ ! -e $VIM_ROOT/bundle/nerdtree ]; then
-   pushd $VIM_ROOT/bundle
+   pushd $VIM_ROOT/bundle > /dev/null
    git clone https://github.com/scrooloose/nerdtree.git
-   popd
+   popd > /dev/null
+fi
+
+if [ ! -e $VIM_ROOT/colors ]; then
+   ln -s $GIT_ROOT/colors $VIM_ROOT/colors
+fi
+
+if [ ! -e $VIM_ROOT/indent ]; then
+   ln -s $GIT_ROOT/indent $VIM_ROOT/indent
 fi
