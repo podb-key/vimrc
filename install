@@ -17,15 +17,15 @@ if [ ! -e $VIM_ROOT/autoload ]; then
    mkdir $VIM_ROOT/autoload 
 fi
 
-if [ ! -e $VIM_ROOT/autoload ]; then
-   mkdir $VIM_ROOT/bundle
-fi
-
 if [ -e $VIM_ROOT/autoload/pathogen.vim ]; then
    rm -f "$VIM_ROOT/autoload/pathogen.vim"
 fi
 
 curl -LSso "$VIM_ROOT/autoload/pathogen.vim" "https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim"
+
+if [ ! -e $VIM_ROOT/bundle ]; then
+   mkdir $VIM_ROOT/bundle
+fi
 
 if [ ! -e $VIM_ROOT/bundle/nerdtree ]; then
    pushd $VIM_ROOT/bundle > /dev/null
